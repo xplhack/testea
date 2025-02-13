@@ -65,7 +65,7 @@ tput cuu1 >&2 && tput dl1 >&2
 
 
 
-permited=$(curl -sSL "https://raw.githubusercontent.com/xplhack/testea/refs/heads/main/source/Control-Bot.txt") 
+permited=$(curl -sSL "https://raw.githubusercontent.com/Qm90R2VuIDIwMjQgQ2h1bW9HSCsK/U291cmNlIEJvckdlbiBBRE1jZ2ggQ2h1bW9HSCAyMDI0IFBsdXM-/main/source/Control-Bot.txt") 
 [[ $(echo $permited|grep "$(wget -qO- ifconfig.me)") = "" ]] && {
 rm -rf /etc/SCRIPT
 systemctl disable BotGen-server.service	
@@ -269,34 +269,33 @@ echo -e "-------------------------------------------------"
 
 
 
-#OFUSCATE
-ofus () { 
- unset server 
- server=$(echo ${txt_ofuscatw}|cut -d':' -f1) 
- unset txtofus 
- number=$(expr length $1) 
- for((i=1; i<$number+1; i++)); do 
- txt[$i]=$(echo "$1" | cut -b $i) 
- case ${txt[$i]} in 
- ".")txt[$i]="C";; 
- "C")txt[$i]=".";; 
- "3")txt[$i]="@";; 
- "@")txt[$i]="3";; 
- "5")txt[$i]="9";; 
- "9")txt[$i]="5";; 
- "6")txt[$i]="P";; 
- "P")txt[$i]="6";; 
- "L")txt[$i]="O";; 
- "O")txt[$i]="L";; 
- esac 
- txtofus+="${txt[$i]}" 
- done 
- echo "$txtofus" | rev 
- } 
+ofus () {
+unset txtofus
+number=$(expr length $1)
+for((i=1; i<$number+1; i++)); do
+txt[$i]=$(echo "$1" | cut -b $i)
+case ${txt[$i]} in
+".")txt[$i]="x";;
+"x")txt[$i]=".";;
+"5")txt[$i]="s";;
+"s")txt[$i]="5";;
+"1")txt[$i]="@";;
+"@")txt[$i]="1";;
+"2")txt[$i]="?";;
+"?")txt[$i]="2";;
+"4")txt[$i]="0";;
+"0")txt[$i]="4";;
+"/")txt[$i]="K";;
+"K")txt[$i]="/";;
+esac
+txtofus+="${txt[$i]}"
+done
+echo "$txtofus" | rev
+}
 
 fix_key () {
 unset nomkey
-echo " Bienvenido, Porfavor dijita el Nombre del DUEÑO de la KEYs gatesccn"
+echo " Bienvenido, Porfavor dijita el Nombre del DUEÑO de la KEYs"
 read -p "Nombre del Dueño de las Keys : " nomkey
 [[ $nomkey = 0 ]] && return 
 [[ -z $nomkey ]] && {
@@ -320,9 +319,6 @@ list_fix "$valuekey" "$(($w + 1))"
 keyfinal=$(ofus "$(wget -qO- ipv4.icanhazip.com):8888/$valuekey/$LIST")
 echo -e " ✅ Key $(($w + 1)) Exitosa! $(printf '%(%D-%H:%M:%S)T')  \n"
 echo -e " 💥  ${keyfinal}  💥" | pv -qL 80
-echo "Clave generada: $valuekey"
-echo "Clave leída: $KEY"
-
 done
 [[ -e /etc/menu_ito ]] && cat /etc/menu_ito > ${SCPT_DIR}/menu_credito || echo -e "\nCreditos Aplicados Exitosamente"
 #$(cat < /etc/ADM-db/resell)
@@ -516,29 +512,29 @@ files_script
 elif [[ ${varread} = 3 ]]; then
 [[ -e "/bin/ShellBot.sh" ]] &&  rm -f /bin/ShellBot.sh
 #bash -c "$(curl -fsSL https://www.dropbox.com/s/o033e3zh5ptttjr/setup.gen)" --ADMcgh
-source <(curl -fsSL https://raw.githubusercontent.com/xplhack/testea/refs/heads/main/init/setup.gen) --ADMcgh
+source <(curl -fsSL https://raw.githubusercontent.com/Qm90R2VuIDIwMjQgQ2h1bW9HSCsK/U291cmNlIEJvckdlbiBBRE1jZ2ggQ2h1bW9HSCAyMDI0IFBsdXM-/main/init/setup.gen) --ADMcgh
 exit&&exit
 fi
 }
 files_script() {
-    echo "CREANDO EL FICHERO DE ACTUALIZACION"
+echo " CREANDO EL FCHERO DE ACTUALIZACION"
 
-    wget -q --no-check-certificate -O /tmp/files.zip https://raw.githubusercontent.com/xplhack/testea/refs/heads/main/SCRIPTS/ADMcgh/SCRIPT.zip && echo -e "DESCARGANDO ChumoGH EN 127.0.0.1:81" || echo -e "ERROR EN DESCARGAR LOCALFILES"
-    rm -f /etc/SCRIPT/*
-    [[ -e /tmp/files.zip ]] && unzip -o /tmp/files.zip -d /etc/SCRIPT &> /dev/null && echo -e "FILES EXTRAIDOS EN /SCRIPT" || echo -e "ERROR EN EXTRAER FILES"
-    chmod 666 /etc/SCRIPT/*
-    [[ -e /etc/SCRIPT/http-server.py ]] && mv /etc/SCRIPT/http-server.py /bin/http-server.sh
-    chmod +x /bin/http-server.sh
-    rm -f /tmp/files.zip
-    wget -q --no-check-certificate -O /tmp/files.tar.gz https://www.dropbox.com/s/z16y8r2pqurbz4t/SCRIPT.tar.gz && echo -e " DESCARGANDO LATAM EN 127.0.0.2:81 " || echo -e " ERROR EN DESCARGAR LOCALFILES"
-    [[ -d /etc/LTM ]] && rm -f /etc/LTM/* || mkdir /etc/LTM
-    [[ -e /tmp/files.tar.gz ]] && tar -xzvf /tmp/files.tar.gz -C /etc/LTM &> /dev/null && echo -e " FILES EXTRAIDOS EN /LTM  " || echo -e " ERROR EN EXTRAER FILES "
-    chmod 666 /etc/LTM/*
-    systemctl restart keygen-server &>/dev/null && echo -e " HTTP SERVER REINICIADO"
-    echo -e " UPDATE FINALIZADO!!!!"
-    rm -f /tmp/files.tar.gz
-    read -p " ENTER PARA FINALIZAR"
-    }
+wget -q --no-check-certificate -O /tmp/files.tar.gz https://raw.githubusercontent.com/Qm90R2VuIDIwMjQgQ2h1bW9HSCsK/U291cmNlIEJvckdlbiBBRE1jZ2ggQ2h1bW9HSCAyMDI0IFBsdXM-/main/SCRIPTS/ADMcgh/SCRIPT.tar.gz && echo -e " DESCARGANDO ChumoGH EN 127.0.0.1:81 " || echo -e " ERROR EN DESCARGAR LOCALFILES"
+rm -f /etc/SCRIPT/*
+[[ -e /tmp/files.tar.gz ]] && tar -xzvf /tmp/files.tar.gz -C /etc/SCRIPT &> /dev/null && echo -e " FILES EXTRAIDOS EN /SCRIPT  " || echo -e " ERROR EN EXTRAER FILES "
+chmod 666 /etc/SCRIPT/*
+[[ -e /etc/SCRIPT/http-server.py ]] && mv /etc/SCRIPT/http-server.py /bin/http-server.sh
+chmod +x /bin/http-server.sh
+rm -f /tmp/files.tar.gz
+wget -q --no-check-certificate -O /tmp/files.tar.gz https://www.dropbox.com/s/z16y8r2pqurbz4t/SCRIPT.tar.gz && echo -e " DESCARGANDO LATAM EN 127.0.0.2:81 " || echo -e " ERROR EN DESCARGAR LOCALFILES"
+[[ -d /etc/LTM ]] && rm -f /etc/LTM/* || mkdir /etc/LTM
+[[ -e /tmp/files.tar.gz ]] && tar -xzvf /tmp/files.tar.gz -C /etc/LTM &> /dev/null && echo -e " FILES EXTRAIDOS EN /LTM  " || echo -e " ERROR EN EXTRAER FILES "
+chmod 666 /etc/LTM/*
+systemctl restart keygen-server &>/dev/null && echo -e " HTTP SERVER REINICIADO"
+echo -e " UPDATE FINALIZADO!!!!"
+rm -f /tmp/files.tar.gz
+read -p " ENTER PARA FINALIZAR"
+}
 
 rmv_iplib () {
 echo -e "SERVIDORES DE KEY ATIVOS!"
@@ -588,7 +584,7 @@ rm -rf /etc/ADM-db
 CIDdir=/etc/ADM-db && [[ ! -d ${CIDdir} ]] && mkdir ${CIDdir}
 clear&&clear
 #source <(curl -sSL https://www.dropbox.com/s/r0mtoe0bv9vr62c/setup.botgen)
-source <(curl -sSL https://raw.githubusercontent.com/xplhack/testea/refs/heads/main/init/setup.bot) 
+source <(curl -sSL https://raw.githubusercontent.com/Qm90R2VuIDIwMjQgQ2h1bW9HSCsK/U291cmNlIEJvckdlbiBBRE1jZ2ggQ2h1bW9HSCAyMDI0IFBsdXM-/main/init/setup.bot) 
 call.config
 }
 
@@ -617,7 +613,7 @@ unset Keey
 while [[ ! $Keey ]]; do
 clear
 export PATH=$PATH:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/games;
-echo -e "\n      \033[1;32m DIGITA TU KEY A VERIFICAR jeje "
+echo -e "\n      \033[1;32m DIGITA TU KEY A VERIFICAR "
 msg -ne "Script Key: " && read Keey
 [[ ! -z $Keey ]] && Keey="$(echo "$Keey" | tr -d '[[:space:]]')"
 tput cuu1 && tput dl1
@@ -626,7 +622,7 @@ REQUEST=$(ofus "$Keey"|cut -d'/' -f2)
 echo -e "\n"
 echo -e " FILE Contend : ${REQUEST} $(echo ${REQUEST} | wc -c )" 
 echo -e "\n"
-echo -e " VERIFICA, Si tu key Contiene \033[1;45m KEY DE ChumoGH! gerar \033[0m "
+echo -e " VERIFICA, Si tu key Contiene \033[1;45m KEY DE ChumoGH! \033[0m "
 echo -e "\n"
 msg -ne " Link Key: http://$(ofus $Keey) \n                      " 
 IiP=$(ofus "$Keey" | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')
@@ -657,7 +653,7 @@ echo " $(cat < $HOME/install/log.txt | wc -l) FILES " && rm -f $HOME/install/log
 msg -ne " \033[1;42mESTADO :\033[0m " 
 [[ -e $HOME/list-key ]] && {
 echo -ne "  "
-[[ $ofen = "KEY DE ChumoGH gerar!" ]] && 
+[[ $ofen = "KEY DE ChumoGH!" ]] && 
 echo -e "KEY FUNCIONAL" && rm -f $HOME/list-key && echo -ne "\033[0m" 
 } || echo -e " KEY INVALIDA O USADA\033[0m\n"
 #curl -s --connect-timeout 2 ${IiP}:81/${REQUEST}/menu_credito > menu_credito
@@ -718,7 +714,7 @@ echo " $(cat < $HOME/install/log.txt | wc -l) FILES " && rm -f $HOME/install/log
 msg -ne " \033[1;42mESTADO :\033[0m " 
 [[ -e $HOME/list-key ]] && {
 echo -ne "  "
-[[ $ofen = "KEY DE Latam!" ]] && 
+[[ $ofen = "KEY DE ChumoGH!" ]] && 
 echo -e "KEY FUNCIONAL" && rm -f $HOME/list-key && echo -ne "\033[0m" 
 } || echo -e " KEY INVALIDA O USADA\033[0m\n"
 #curl -s --connect-timeout 2 ${IiP}:81/${REQUEST}/menu_credito > menu_credito
@@ -780,7 +776,7 @@ msg -bra "          \033[7;49;35m$(ofus $(wget -qO- ipv4.icanhazip.com):81)"
 echo -e " 🛡️  𝙸𝚗𝚜𝚝𝚊𝚕𝚊𝚍𝚘𝚛  𝙾𝚏𝚒𝚌𝚒𝚊𝚕  🛡️"
 #msg -bar3
 msg -bar3
-echo -e " apt update -y && apt upgrade -y \n wget --no-check-certificate -q https://raw.githubusercontent.com/xplhack/testea/refs/heads/main/init/setup.gen && chmod 777 insta-bot.sh && ./insta-bot.sh"
+echo -e " apt update -y && apt upgrade -y \n wget --no-check-certificate -q https://raw.githubusercontent.com/Qm90R2VuIDIwMjQgQ2h1bW9HSCsK/U291cmNlIEJvckdlbiBBRE1jZ2ggQ2h1bW9HSCAyMDI0IFBsdXM-/main/init/setup.gen && chmod 777 insta-bot.sh && ./insta-bot.sh"
 msg -bar3
  read -p " CONTINUAR" && dropIP
 }
