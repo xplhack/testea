@@ -2,6 +2,7 @@
 IVAR="/etc/http-instas"
 onliCHECK=/var/www/html/ChumoGH
 LIST="$(echo "NewVPS-" | rev)"
+LISTM="$(echo "lista-arq-" | rev)"
 [[ -d /var/www/html/ChumoGH ]] || mkdir ${onliCHECK}
 install_fun () {
 apt-get install netcat -y
@@ -66,25 +67,21 @@ KEYZ=($(echo $URL|cut -d ' ' -f2|awk -F "/" '{print $2, $3, $4, $5, $6, $7}'))
 KEY=$(echo ${KEYZ[0]}) && [[ ! $KEY ]] && KEY="ERRO"
 ARQ=$(echo ${KEYZ[1]}) && [[ ! $ARQ ]] && ARQ="ERRO"
 USRIP=$(echo ${KEYZ[2]}) && [[ ! $USRIP ]] && USRIP="ERRO"
+USRSYS=$(echo ${KEYZ[3]}) && [[ ! $USRSYS ]] && USRSYS="ERRO"
+_XXX=$(echo ${KEYZ[4]}) && [[ ! $_XXX ]] && _XXX="ERRO"
 FILE2="${DIR}/${KEY}"
 FILE="${DIR}/${KEY}/$ARQ"
 if [[ -e ${FILE} ]]; then
 STATUS_NUMBER="200"
 STATUS_NAME="Found"
 ENV_ARQ="True"
- if [[ -e ${FILE2}/GERADOR ]]; then
-   if [[ ${USRIP} != "ERRO" ]]; then
+
+if [[ ${USRIP} = "ERRO" ]]; then
     FILE="${DIR}/ERROR-KEY"
-    echo "GERADOR KEY!" > ${FILE}
-    ENV_ARQ="False"
-   fi
- else
-   if [[ ${USRIP} = "ERRO" ]]; then
-    FILE="${DIR}/ERROR-KEY"
-    echo "KEY DE ChumoGH!" > ${FILE}
-    ENV_ARQ="False"
-   fi
- fi
+    echo "KEY DE gagaga python!" > ${FILE}
+    ENV_ARQ="False";
+fi
+
 else
 FILE="${DIR}/ERROR-KEY"
 echo "KEY INVALIDA!" > ${FILE} 
@@ -115,7 +112,7 @@ TIME="20+"
 _key="$(ofus ${IP}:${PORTA}/${KEY}/${LIST})"
 echo "$(cat ${FILE2}.name) | $USRIP | ${_key} | $_hora" > /var/www/html/$KEY/checkIP.log
 echo "$(cat ${FILE2}.name) | $USRIP | ${_key} | $_hora" > /var/www/$KEY/checkIP.log
-RESELL="$(cat /var/www/$KEY/menu_credito)"
+RESELL="$(cat /var/www/$KEY/menu_credito | head -1)"
 TIME=$(echo "${TIME}0"|bc)
 sleep ${TIME}s
 rm -rf /var/www/html/$KEY
@@ -138,8 +135,8 @@ echo "$(cat ${FILE2}.name) | $USRIP | ${_key} | $_hora" >> $log
 echo "$(cat ${FILE2}.name) | $USRIP | ${_key} | $_hora" >> ${onliCHECK}/checkIP.log && chmod +x ${onliCHECK}/checkIP.log
 [[ -e /etc/ADM-db/token ]] && {
 ID="$(cat ${FILE2}.name)" && ID="$(echo $ID | awk '{print $1}' | sed -e 's/[^0-9]//ig')"
-[[ ${ID} -lt '999' ]] && ID='5745188704'
-TOKEN="6116285263:AAFv1BllX3XI8S5_ZMxGhH_u-gicVz3F-nc"
+[[ ${ID} -lt '999' ]] && ID='576145089'
+TOKEN="$(cat /etc/ADM-db/token)"
 urlBOT="https://api.telegram.org/bot$TOKEN/sendMessage"
 MENSAJE="  =======================================\n"
 MENSAJE+=" ========📩𝙈𝙀𝙉𝙎𝘼𝙅𝙀 𝙍𝙀𝘾𝙄𝘽𝙄𝘿𝙊📩========\n"
@@ -149,6 +146,8 @@ MENSAJE+=" =========== ☝️ USADA ☝ ============\n"
 #MENSAJE+="            ☝️ USADA ☝️ \n"
 MENSAJE+=" API/KEY : ${RESELL}\n"
 MENSAJE+=" ID/API: ${ID} ✅ NOTIFICADO \n"
+MENSAJE+=" =======================================\n"
+MENSAJE+=" SYSTEMA : ${USRSYS}, Via SSH\n"
 MENSAJE+=" =======================================\n"
 MENSAJE+=" IP : $USRIP <-> HORA : $_hora\n"
 MENSAJE+=" =======================================\n"

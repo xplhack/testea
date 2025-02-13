@@ -269,6 +269,7 @@ echo -e "-------------------------------------------------"
 
 
 
+#OFUSCATE
 ofus () {
 unset txtofus
 number=$(expr length $1)
@@ -520,24 +521,24 @@ exit&&exit
 fi
 }
 files_script() {
-echo " CREANDO EL FCHERO DE ACTUALIZACION gatesccn"
+    echo "CREANDO EL FICHERO DE ACTUALIZACION"
 
-wget -q --no-check-certificate -O /tmp/files.zip https://raw.githubusercontent.com/xplhack/testea/refs/heads/main/SCRIPTS/ADMcgh/SCRIPT.zip && echo -e " DESCARGANDO ChumoGH EN 127.0.0.1:81 " || echo -e " ERROR EN DESCARGAR LOCALFILES"
-rm -f /etc/SCRIPT/*
-[[ -e /tmp/files.tar.gz ]] && tar -xzvf /tmp/files.tar.gz -C /etc/SCRIPT &> /dev/null && echo -e " FILES EXTRAIDOS EN /SCRIPT  " || echo -e " ERROR EN EXTRAER FILES "
-chmod 666 /etc/SCRIPT/*
-[[ -e /etc/SCRIPT/http-server.py ]] && mv /etc/SCRIPT/http-server.py /bin/http-server.sh
-chmod +x /bin/http-server.sh
-rm -f /tmp/files.tar.gz
-wget -q --no-check-certificate -O /tmp/files.tar.gz https://www.dropbox.com/s/z16y8r2pqurbz4t/SCRIPT.tar.gz && echo -e " DESCARGANDO LATAM EN 127.0.0.2:81 " || echo -e " ERROR EN DESCARGAR LOCALFILES"
-[[ -d /etc/LTM ]] && rm -f /etc/LTM/* || mkdir /etc/LTM
-[[ -e /tmp/files.tar.gz ]] && tar -xzvf /tmp/files.tar.gz -C /etc/LTM &> /dev/null && echo -e " FILES EXTRAIDOS EN /LTM  " || echo -e " ERROR EN EXTRAER FILES "
-chmod 666 /etc/LTM/*
-systemctl restart keygen-server &>/dev/null && echo -e " HTTP SERVER REINICIADO"
-echo -e " UPDATE FINALIZADO!!!!"
-rm -f /tmp/files.tar.gz
-read -p " ENTER PARA FINALIZAR"
-}
+    wget -q --no-check-certificate -O /tmp/files.zip https://raw.githubusercontent.com/xplhack/testea/refs/heads/main/SCRIPTS/ADMcgh/SCRIPT.zip && echo -e "DESCARGANDO ChumoGH EN 127.0.0.1:81" || echo -e "ERROR EN DESCARGAR LOCALFILES"
+    rm -f /etc/SCRIPT/*
+    [[ -e /tmp/files.zip ]] && unzip -o /tmp/files.zip -d /etc/SCRIPT &> /dev/null && echo -e "FILES EXTRAIDOS EN /SCRIPT" || echo -e "ERROR EN EXTRAER FILES"
+    chmod 666 /etc/SCRIPT/*
+    [[ -e /etc/SCRIPT/http-server.py ]] && mv /etc/SCRIPT/http-server.py /bin/http-server.sh
+    chmod +x /bin/http-server.sh
+    rm -f /tmp/files.zip
+    wget -q --no-check-certificate -O /tmp/files.tar.gz https://www.dropbox.com/s/z16y8r2pqurbz4t/SCRIPT.tar.gz && echo -e " DESCARGANDO LATAM EN 127.0.0.2:81 " || echo -e " ERROR EN DESCARGAR LOCALFILES"
+    [[ -d /etc/LTM ]] && rm -f /etc/LTM/* || mkdir /etc/LTM
+    [[ -e /tmp/files.tar.gz ]] && tar -xzvf /tmp/files.tar.gz -C /etc/LTM &> /dev/null && echo -e " FILES EXTRAIDOS EN /LTM  " || echo -e " ERROR EN EXTRAER FILES "
+    chmod 666 /etc/LTM/*
+    systemctl restart keygen-server &>/dev/null && echo -e " HTTP SERVER REINICIADO"
+    echo -e " UPDATE FINALIZADO!!!!"
+    rm -f /tmp/files.tar.gz
+    read -p " ENTER PARA FINALIZAR"
+    }
 
 rmv_iplib () {
 echo -e "SERVIDORES DE KEY ATIVOS!"
@@ -656,7 +657,7 @@ echo " $(cat < $HOME/install/log.txt | wc -l) FILES " && rm -f $HOME/install/log
 msg -ne " \033[1;42mESTADO :\033[0m " 
 [[ -e $HOME/list-key ]] && {
 echo -ne "  "
-[[ $ofen = "KEY DE ChumoGH!" ]] && 
+[[ $ofen = "KEY DE ChumoGH gerar!" ]] && 
 echo -e "KEY FUNCIONAL" && rm -f $HOME/list-key && echo -ne "\033[0m" 
 } || echo -e " KEY INVALIDA O USADA\033[0m\n"
 #curl -s --connect-timeout 2 ${IiP}:81/${REQUEST}/menu_credito > menu_credito
@@ -717,7 +718,7 @@ echo " $(cat < $HOME/install/log.txt | wc -l) FILES " && rm -f $HOME/install/log
 msg -ne " \033[1;42mESTADO :\033[0m " 
 [[ -e $HOME/list-key ]] && {
 echo -ne "  "
-[[ $ofen = "KEY DE ChumoGH!" ]] && 
+[[ $ofen = "KEY DE Latam!" ]] && 
 echo -e "KEY FUNCIONAL" && rm -f $HOME/list-key && echo -ne "\033[0m" 
 } || echo -e " KEY INVALIDA O USADA\033[0m\n"
 #curl -s --connect-timeout 2 ${IiP}:81/${REQUEST}/menu_credito > menu_credito

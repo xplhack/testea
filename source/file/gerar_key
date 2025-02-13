@@ -390,9 +390,8 @@ echo "$nombrevalue" >> /etc/ADM-db/LTM-key.cont
 at now +1 hours <<< "rm -rf ${DIR}/${KEY} && rm -f ${DIR}/${KEY}.name"
 }
 
+#OFUSCATE
 ofus () {
-unset server
-server=$(echo ${txt_ofuscatw}|cut -d':' -f1)
 unset txtofus
 number=$(expr length $1)
 for((i=1; i<$number+1; i++)); do
