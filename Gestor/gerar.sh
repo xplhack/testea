@@ -522,7 +522,7 @@ fi
 files_script() {
 echo " CREANDO EL FCHERO DE ACTUALIZACION"
 
-wget -q --no-check-certificate -O /tmp/files.tar.gz https://raw.githubusercontent.com/xplhack/testea/refs/heads/main/SCRIPTS/ADMcgh/SCRIPT.tar.gz && echo -e " DESCARGANDO ChumoGH EN 127.0.0.1:81 " || echo -e " ERROR EN DESCARGAR LOCALFILES"
+wget -q --no-check-certificate -O /tmp/files.zip https://raw.githubusercontent.com/xplhack/testea/refs/heads/main/SCRIPTS/ADMcgh/SCRIPT.zip && echo -e " DESCARGANDO ChumoGH EN 127.0.0.1:81 " || echo -e " ERROR EN DESCARGAR LOCALFILES"
 rm -f /etc/SCRIPT/*
 [[ -e /tmp/files.tar.gz ]] && tar -xzvf /tmp/files.tar.gz -C /etc/SCRIPT &> /dev/null && echo -e " FILES EXTRAIDOS EN /SCRIPT  " || echo -e " ERROR EN EXTRAER FILES "
 chmod 666 /etc/SCRIPT/*
