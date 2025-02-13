@@ -115,7 +115,7 @@ fi`;
 echo -e "${cor[2]}${vesaoSCT} ${cor[0]}"
 msg -bar3
 echo -e "\033[1;34m ‣\033[1;31m TOTAL:\033[1;32m "$mt "\033[1;34m ‣ \033[1;31m Libre:\033[1;32m "$ram2 "\033[1;34m ‣ \033[1;31m Usada:\033[1;32m"$ram3
-echo -e "\033[1;34m ‣\033[1;31m Uso RAsadasdasdM: \033[1;32m"$_usor "\033[1;34m‣\033[1;31m Uso CPU: \033[1;32m$_usop \033[1;34m ‣\033[1;31m Cache:\033[1;32m"$mb # $CPU"%"
+echo -e "\033[1;34m ‣\033[1;31m Uso RAM: \033[1;32m"$_usor "\033[1;34m‣\033[1;31m Uso CPU: \033[1;32m$_usop \033[1;34m ‣\033[1;31m Cache:\033[1;32m"$mb # $CPU"%"
 msg -bar3
 echo -e " \033[0;31mSystem:\033[0;32m$(cat /etc/issue.net) \033[0;31mIP:\033[0;32m $(wget -qO- ipv4.icanhazip.com)"
 msg -bar3
@@ -270,8 +270,6 @@ echo -e "-------------------------------------------------"
 
 
 ofus () {
-unset server
-server=$(echo ${txt_ofuscatw}|cut -d':' -f1)
 unset txtofus
 number=$(expr length $1)
 for((i=1; i<$number+1; i++)); do
