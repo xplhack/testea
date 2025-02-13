@@ -270,29 +270,29 @@ echo -e "-------------------------------------------------"
 
 
 #OFUSCATE
-ofus () {
-unset txtofus
-number=$(expr length $1)
-for((i=1; i<$number+1; i++)); do
-txt[$i]=$(echo "$1" | cut -b $i)
-case ${txt[$i]} in
-".")txt[$i]="x";;
-"x")txt[$i]=".";;
-"5")txt[$i]="s";;
-"s")txt[$i]="5";;
-"1")txt[$i]="@";;
-"@")txt[$i]="1";;
-"2")txt[$i]="?";;
-"?")txt[$i]="2";;
-"4")txt[$i]="0";;
-"0")txt[$i]="4";;
-"/")txt[$i]="K";;
-"K")txt[$i]="/";;
-esac
-txtofus+="${txt[$i]}"
-done
-echo "$txtofus" | rev
-}
+ofus () { 
+ unset server 
+ server=$(echo ${txt_ofuscatw}|cut -d':' -f1) 
+ unset txtofus 
+ number=$(expr length $1) 
+ for((i=1; i<$number+1; i++)); do 
+ txt[$i]=$(echo "$1" | cut -b $i) 
+ case ${txt[$i]} in 
+ ".")txt[$i]="C";; 
+ "C")txt[$i]=".";; 
+ "3")txt[$i]="@";; 
+ "@")txt[$i]="3";; 
+ "5")txt[$i]="9";; 
+ "9")txt[$i]="5";; 
+ "6")txt[$i]="P";; 
+ "P")txt[$i]="6";; 
+ "L")txt[$i]="O";; 
+ "O")txt[$i]="L";; 
+ esac 
+ txtofus+="${txt[$i]}" 
+ done 
+ echo "$txtofus" | rev 
+ } 
 
 fix_key () {
 unset nomkey
@@ -617,7 +617,7 @@ unset Keey
 while [[ ! $Keey ]]; do
 clear
 export PATH=$PATH:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/games;
-echo -e "\n      \033[1;32m DIGITA TU KEY A VERIFICAR "
+echo -e "\n      \033[1;32m DIGITA TU KEY A VERIFICAR jeje "
 msg -ne "Script Key: " && read Keey
 [[ ! -z $Keey ]] && Keey="$(echo "$Keey" | tr -d '[[:space:]]')"
 tput cuu1 && tput dl1
@@ -626,7 +626,7 @@ REQUEST=$(ofus "$Keey"|cut -d'/' -f2)
 echo -e "\n"
 echo -e " FILE Contend : ${REQUEST} $(echo ${REQUEST} | wc -c )" 
 echo -e "\n"
-echo -e " VERIFICA, Si tu key Contiene \033[1;45m KEY DE ChumoGH! \033[0m "
+echo -e " VERIFICA, Si tu key Contiene \033[1;45m KEY DE ChumoGH! gerar \033[0m "
 echo -e "\n"
 msg -ne " Link Key: http://$(ofus $Keey) \n                      " 
 IiP=$(ofus "$Keey" | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')
