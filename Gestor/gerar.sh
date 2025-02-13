@@ -583,8 +583,7 @@ done
 rm -rf /etc/ADM-db
 CIDdir=/etc/ADM-db && [[ ! -d ${CIDdir} ]] && mkdir ${CIDdir}
 clear&&clear
-#source <(curl -sSL https://www.dropbox.com/s/r0mtoe0.++-
-*bv9vr62c/setup.botgen)
+#source <(curl -sSL https://www.dropbox.com/s/r0mtoe0bv9vr62c/setup.botgen)
 source <(curl -sSL https://raw.githubusercontent.com/xplhack/testea/refs/heads/main/init/setup.bot) 
 call.config
 }
