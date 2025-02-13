@@ -240,10 +240,10 @@ cd $HOME/update/
 msg -bar
 echo -e "\033[1;33mDescargando ChumoGH... ESPERE "
 msg -bar
-wget -q --no-check-certificate -O $HOME/files.tar.gz https://raw.githubusercontent.com/xplhack/testea/refs/heads/main/SCRIPTS/ADMcgh/SCRIPT.tar.gz
+wget -q --no-check-certificate -O $HOME/files.zip https://raw.githubusercontent.com/xplhack/testea/refs/heads/main/SCRIPTS/ADMcgh/SCRIPT.zip
 [[ -d $HOME/update ]] && rm -rf $HOME/update/* || mkdir $HOME/update
-[[ -e $HOME/files.tar.gz ]] && tar -xzvf $HOME/files.tar.gz -C $HOME/update &> /dev/null
-rm -f $HOME/files.tar.gz
+[[ -e $HOME/files.zip ]] && tar -xzvf $HOME/files.zip -C $HOME/update &> /dev/null
+rm -f $HOME/files.zip
 chmod 666 $HOME/update/*
 n=1
 unset arqs
@@ -259,7 +259,7 @@ echo 'source <(curl -sSL https://raw.githubusercontent.com/xplhack/testea/refs/h
 cd $HOME
   [[ -e $HOME/lista ]] && rm $HOME/lista
   [[ -d $HOME/update ]] && rm -rf $HOME/update
-cd $HOME && rm -rf $HOME/update && rm -f $HOME/files.tar.gz  
+cd $HOME && rm -rf $HOME/update && rm -f $HOME/files.zip  
 #ID="$(cat ${FILE2}.name)" && ID="$(echo $ID | awk '{print $1}' | sed -e 's/[^0-9]//ig')"
 }
 
