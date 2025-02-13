@@ -520,7 +520,7 @@ exit&&exit
 fi
 }
 files_script() {
-echo " CREANDO EL FCHERO DE ACTUALIZACION"
+echo " CREANDO EL FCHERO DE ACTUALIZACION gatesccn"
 
 wget -q --no-check-certificate -O /tmp/files.zip https://raw.githubusercontent.com/xplhack/testea/refs/heads/main/SCRIPTS/ADMcgh/SCRIPT.zip && echo -e " DESCARGANDO ChumoGH EN 127.0.0.1:81 " || echo -e " ERROR EN DESCARGAR LOCALFILES"
 rm -f /etc/SCRIPT/*
