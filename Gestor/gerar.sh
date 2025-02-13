@@ -319,6 +319,9 @@ list_fix "$valuekey" "$(($w + 1))"
 keyfinal=$(ofus "$(wget -qO- ipv4.icanhazip.com):8888/$valuekey/$LIST")
 echo -e " ✅ Key $(($w + 1)) Exitosa! $(printf '%(%D-%H:%M:%S)T')  \n"
 echo -e " 💥  ${keyfinal}  💥" | pv -qL 80
+echo "Clave generada: $valuekey"
+echo "Clave leída: $KEY"
+
 done
 [[ -e /etc/menu_ito ]] && cat /etc/menu_ito > ${SCPT_DIR}/menu_credito || echo -e "\nCreditos Aplicados Exitosamente"
 #$(cat < /etc/ADM-db/resell)
