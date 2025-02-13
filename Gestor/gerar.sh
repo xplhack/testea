@@ -295,7 +295,7 @@ echo "$txtofus" | rev
 
 fix_key () {
 unset nomkey
-echo " Bienvenido, Porfavor dijita el Nombre del DUEÑO de la KEYs"
+echo " Bienvenido, Porfavor dijita el Nombre del DUEÑO de la KEYs gatesccn"
 read -p "Nombre del Dueño de las Keys : " nomkey
 [[ $nomkey = 0 ]] && return 
 [[ -z $nomkey ]] && {

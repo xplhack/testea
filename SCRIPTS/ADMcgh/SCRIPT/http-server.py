@@ -66,9 +66,6 @@ KEYZ=($(echo $URL|cut -d ' ' -f2|awk -F "/" '{print $2, $3, $4, $5, $6, $7}'))
 KEY=$(echo ${KEYZ[0]}) && [[ ! $KEY ]] && KEY="ERRO"
 ARQ=$(echo ${KEYZ[1]}) && [[ ! $ARQ ]] && ARQ="ERRO"
 USRIP=$(echo ${KEYZ[2]}) && [[ ! $USRIP ]] && USRIP="ERRO"
-USRSYS=$(echo ${KEYZ[3]}) && [[ ! $USRSYS ]] && USRSYS="ERRO"
-UUID=$(echo ${KEYZ[4]}) && [[ ! $UUID ]] && UUID="SERIAL QR NO RECIVIDO"
-_LOCAL=$(echo ${KEYZ[5]}) && [[ ! $_LOCAL ]] && _LOCAL="DESC"
 FILE2="${DIR}/${KEY}"
 FILE="${DIR}/${KEY}/$ARQ"
 if [[ -e ${FILE} ]]; then
@@ -116,15 +113,13 @@ TIME="20+"
   TIME+="1+"
   done
 _key="$(ofus ${IP}:${PORTA}/${KEY}/${LIST})"
-ADM_token=$(cat /var/www/$KEY/cabecalho| tail -1 | cut -d '|' -f2)
 echo "$(cat ${FILE2}.name) | $USRIP | ${_key} | $_hora" > /var/www/html/$KEY/checkIP.log
 echo "$(cat ${FILE2}.name) | $USRIP | ${_key} | $_hora" > /var/www/$KEY/checkIP.log
-RESELL="$(cat /var/www/$KEY/menu_credito | head -1)"
+RESELL="$(cat /var/www/$KEY/menu_credito)"
 TIME=$(echo "${TIME}0"|bc)
 sleep ${TIME}s
 rm -rf /var/www/html/$KEY
 rm -rf /var/www/$KEY
-rm -f /var/www/html/ChumoGH/$KEY
 log="/etc/gerar-sh-log"
 _hora=$(printf '%(%D-%H:%M:%S)T') 
 if [[ -d $FILE2 ]]; then
@@ -132,40 +127,36 @@ PERM="${DIR}/${KEY}/keyfixa"
 if [[ -e $PERM ]]; then
   if [[ $(cat $PERM) != "$USRIP" ]]; then
   log="/etc/gerar-sh-log"
-  echo "$(cat ${FILE2}.name) | IP-FIJA:$USRIP | ${_key} | $_hora | ${USRSYS} | ${UUID} | $(cat < /etc/SCRIPT/v-local.log)" >> $log
-  echo "$(cat ${FILE2}.name) | IP-FIJA:$USRIP | ${_key} | $_hora | ${USRSYS} | ${UUID} |$(cat < /etc/SCRIPT/v-local.log)" >> ${onliCHECK}/checkIP.log && chmod +x ${onliCHECK}/checkIP.log
+  echo "$(cat ${FILE2}.name) | IP-FIJA:$USRIP | ${_key} | $_hora" >> $log
+  echo "$(cat ${FILE2}.name) | IP-FIJA:$USRIP | ${_key} | $_hora" >> ${onliCHECK}/checkIP.log && chmod +x ${onliCHECK}/checkIP.log
   #cat /etc/gerar-sh-log > ${onliCHECK}/checkIP.log
   rm -rf $FILE2
   rm -f ${FILE2}.name
   fi
 else
-echo "$(cat ${FILE2}.name) | $USRIP | ${_key} | $_hora | ${USRSYS} | ${UUID} | $(cat < /etc/SCRIPT/v-local.log)" >> $log
-echo "$(cat ${FILE2}.name) | $USRIP | ${_key} | $_hora | ${USRSYS} | ${UUID} | $(cat < /etc/SCRIPT/v-local.log)" >> ${onliCHECK}/checkIP.log && chmod +x ${onliCHECK}/checkIP.log
+echo "$(cat ${FILE2}.name) | $USRIP | ${_key} | $_hora" >> $log
+echo "$(cat ${FILE2}.name) | $USRIP | ${_key} | $_hora" >> ${onliCHECK}/checkIP.log && chmod +x ${onliCHECK}/checkIP.log
 [[ -e /etc/ADM-db/token ]] && {
 ID="$(cat ${FILE2}.name)" && ID="$(echo $ID | awk '{print $1}' | sed -e 's/[^0-9]//ig')"
-[[ ${ID} -lt '999' ]] && ID='576145089'
-[[ -z {ADM_token} ]] && TOKEN="$(cat /etc/ADM-db/token)" || TOKEN=${ADM_token}
+[[ ${ID} -lt '999' ]] && ID='5745188704'
+TOKEN="6116285263:AAFv1BllX3XI8S5_ZMxGhH_u-gicVz3F-nc"
 urlBOT="https://api.telegram.org/bot$TOKEN/sendMessage"
 MENSAJE="  =======================================\n"
 MENSAJE+=" ========📩𝙈𝙀𝙉𝙎𝘼𝙅𝙀 𝙍𝙀𝘾𝙄𝘽𝙄𝘿𝙊📩========\n"
 MENSAJE+=" =======================================\n"
 MENSAJE+=" ${_key}\n"
-MENSAJE+=" ============= ☝️ ✅ ☝ ==============\n"
-MENSAJE+=" IP: $USRIP <-> S.O: ${USRSYS}\n"
+MENSAJE+=" =========== ☝️ USADA ☝ ============\n"
+#MENSAJE+="            ☝️ USADA ☝️ \n"
+MENSAJE+=" API/KEY : ${RESELL}\n"
+MENSAJE+=" ID/API: ${ID} ✅ NOTIFICADO \n"
 MENSAJE+=" =======================================\n"
-MENSAJE+=" UUID: ${UUID}\n"
+MENSAJE+=" IP : $USRIP <-> HORA : $_hora\n"
 MENSAJE+=" =======================================\n"
-MENSAJE+=" DUEÑO : ${RESELL} \n"
-MENSAJE+=" ID: ${ID} <-> Ver : $(cat < /etc/SCRIPT/v-local.log) 🔐 \n"
-MENSAJE+=" =======================================\n"
-MENSAJE+="  HORA: $_hora <-> VIA INSTALL SSH\n"
-MENSAJE+=" =======================================\n"
+MENSAJE+='       🔰 Bot generador de key 🔰\n'
 MENSAJE+='           ⚜ By @ChumoGH ⚜ \n'
 MENSAJE+=" =======================================\n"
-MENSAJE+='&reply_markup={"inline_keyboard":[[{"text":"NEW KEY","callback_data":"/keygen"},{"text":" SOPORTE ","url":"https://t.me/ChumoGH_ADM"}]]}'
 #curl -s -X POST $urlBOT -d chat_id=$ID -d text="$(echo -e "$MENSAJE")" &>/dev/null
-#curl -s --max-time 10 -d "chat_id=$ID&disable_web_page_preview=1&text=$(echo -e "$MENSAJE")&parse_mode=html" $urlBOT &>/dev/null
-curl -s --max-time 10 -d "chat_id=$ID&disable_web_page_preview=1&text=$(echo -e "$MENSAJE")" ${urlBOT} &>/dev/null
+curl -s --max-time 10 -d "chat_id=$ID&disable_web_page_preview=1&text=$(echo -e "$MENSAJE")" $urlBOT &>/dev/null
 }
 rm -rf $FILE2
 rm -f ${FILE2}.name
